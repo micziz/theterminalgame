@@ -6,6 +6,7 @@ from parts.initialPositions import doorPos,enemyPos, coinPos, chestPos
 from parts.move import move
 from parts.act import act
 from parts.checkCollisions import checkCollision
+from parts.checkRepetition import checkRepetition
 
 position[0][7] = "x"
 position[-1][7] = "D"
@@ -58,8 +59,8 @@ while True:
         print(f"Available Move: {moveX}")
     for actionX in actions:
         print(f"{actionX[1]}: {actionX[0]}")
-    
-    i = 0
+
+    i = 1
     while True:
         try:
             action = input("Move: ")
@@ -73,12 +74,9 @@ while True:
             didAct = True
             break
         else:
-            if i == 3:
-                exitQ = input("DO YOU WANT TO EXIT? (y/n): ")
-                if exitQ == "y":
-                    sys.exit(0)
-                else:
-                    i = 0
+            iProv = checkRepetition(i)
+            if iProv != None:
+                i = iProv
             i = i + 1
 
     if didMove:
