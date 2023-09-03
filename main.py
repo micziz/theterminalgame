@@ -1,32 +1,14 @@
 # Imports
 import os, sys, time
 
-# Initial ASCII grid
-upAndDown = "-------------------------------"
-
-position = [
-    ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
-    ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
-    ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
-    ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
-    ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
-    ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
-    ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
-    ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
-    ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
-    ["|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
-]
+from parts.board import upAndDown, position
+from parts.initialPositions import doorPos,enemyPos, coinPos, chestPos
 
 position[0][7] = "x"
 position[-1][7] = "D"
 position[3][4] = "f"
 position[3][10] = "f"
-position[5][10] = "y"
-
-doorPos = [9, 7]
-enemyPos = [[3, 4], [3, 10]]
-coinPos = []
-chestPos = [5, 10]
+position[5][8] = "y"
 
 def move(action, pos):
     if action == "w":
@@ -125,7 +107,11 @@ while True:
     
     i = 0
     while True:
-        action = input("Move: ")
+        try:
+            action = input("Move: ")
+        except KeyboardInterrupt:
+            print("\nThanks For Playing")
+            sys.exit(0)
         if action in availableMoves:
             didMove = True
             break
@@ -170,6 +156,7 @@ while True:
                 coinPos.append([pos[0] + 1, pos[1]])
             elif wdid == "open":
                 coins = coins + 5
+                position[pos[0] + 1][pos[1]] = " "
                 chestPos.clear()
             elif wdid == "move":
                position[pos[0] + 1][pos[1]] = " " 
