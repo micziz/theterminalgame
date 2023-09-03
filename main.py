@@ -169,7 +169,6 @@ while True:
                 enemyPos.remove([pos[0] + 1, pos[1]])
                 coinPos.append([pos[0] + 1, pos[1]])
             elif wdid == "open":
-                position[pos[0] + 1][pos[1]] = "l"
                 coins = coins + 5
                 chestPos.clear()
             elif wdid == "move":
