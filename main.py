@@ -3,47 +3,14 @@ import os, sys, time
 
 from parts.board import upAndDown, position
 from parts.initialPositions import doorPos,enemyPos, coinPos, chestPos
+from parts.move import move
+from parts.act import act
 
 position[0][7] = "x"
 position[-1][7] = "D"
 position[3][4] = "f"
 position[3][10] = "f"
 position[5][8] = "y"
-
-def move(action, pos):
-    if action == "w":
-        pos[0] = pos[0] - 1
-        return pos
-    elif action == "s":
-        pos[0] = pos[0] + 1
-        return pos
-    elif action == "a":
-        pos[1] = pos[1] - 1
-        return pos
-    elif action == "d":
-        pos[1] = pos[1] + 1
-        return pos
-
-def act(action, pos):
-    if action == "e":
-        if position[pos[0] + 1][pos[1]] == "f":
-            return True, "kill"
-        else:
-            return False,  "kill"
-    if action == "o":
-        if position[pos[0] + 1][pos[1]] == "y":
-            return True, "open"
-        else:
-            return False, "open"
-    if action == "q":
-        checkPos = [pos[0] + 2, pos[1]]
-        if checkPos != chestPos: 
-            if checkPos[0] < len(position):
-                return True, "move"
-            else:
-                return False, "move"
-        else: 
-            return False, "move"
 
 coins = 0
 
@@ -148,7 +115,7 @@ while True:
             time.sleep(0.2)
         collisions["chest"] = False
     elif didAct:
-        sucsess, wdid = act(action, pos)
+        sucsess, wdid = act(action, pos, position, chestPos)
         if sucsess:
             if wdid == "kill": 
                 position[pos[0] + 1][pos[1]] = "c"
