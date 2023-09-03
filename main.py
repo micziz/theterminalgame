@@ -5,6 +5,7 @@ from parts.board import upAndDown, position
 from parts.initialPositions import doorPos,enemyPos, coinPos, chestPos
 from parts.move import move
 from parts.act import act
+from parts.checkCollisions import checkCollision
 
 position[0][7] = "x"
 position[-1][7] = "D"
@@ -21,20 +22,6 @@ collisions = {
     "chest": False
 }
 
-def checkCollision(pos):
-    if pos == doorPos:
-        collisions["door"] = True
-    if len(enemyPos) != 0:
-        for posX in enemyPos:
-            if pos == posX:
-                collisions["enemy"] = True
-    if len(coinPos) != 0:
-        for coin in coinPos:
-            if pos == coin:
-                collisions["coin"] = True
-    if pos == chestPos:
-        collisions["chest"] = True
-    return collisions
 
 startPos = [0, 7]
 pos = startPos
@@ -97,7 +84,7 @@ while True:
     if didMove:
         position[pos[0]][pos[1]] = " "
         pos = move(action, pos)
-        collisions = checkCollision(pos)
+        collisions = checkCollision(pos, collisions, doorPos, enemyPos, coinPos, chestPos)
         if collisions["door"] == True:
             break
         if collisions["enemy"] == True:
