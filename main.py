@@ -1,5 +1,5 @@
 # Imports
-import os, sys
+import os, sys, time
 
 # Initial ASCII grid
 upAndDown = "-------------------------------"
@@ -55,8 +55,11 @@ def act(action, pos):
             return False, "open"
     if action == "q":
         checkPos = [pos[0] + 2, pos[1]]
-        if checkPos != chestPos:
-            return True, "move"
+        if checkPos != chestPos: 
+            if checkPos[0] < len(position):
+                return True, "move"
+            else:
+                return False, "move"
         else: 
             return False, "move"
 
@@ -65,7 +68,8 @@ coins = 0
 collisions = {
     "door": False,
     "enemy": False,
-    "coin": False
+    "coin": False,
+    "chest": False
 }
 
 def checkCollision(pos):
@@ -79,6 +83,8 @@ def checkCollision(pos):
         for coin in coinPos:
             if pos == coin:
                 collisions["coin"] = True
+    if pos == chestPos:
+        collisions["chest"] = True
     return collisions
 
 startPos = [0, 7]
@@ -147,7 +153,14 @@ while True:
         if collisions["coin"] == True:
             coins = coins + 1
             collisions["coin"] = False
-        position[pos[0]][pos[1]] = "x"
+        if collisions["chest"] != True:
+            position[pos[0]][pos[1]] = "x"
+        else:
+            pos = [pos[0] - 1, pos[1]]
+            position[pos[0]][pos[1]] = "x"
+            print("You are Blocked, try proceeding elswhere")
+            time.sleep(0.2)
+        collisions["chest"] = False
     elif didAct:
         sucsess, wdid = act(action, pos)
         if sucsess:
@@ -158,11 +171,15 @@ while True:
             elif wdid == "open":
                 position[pos[0] + 1][pos[1]] = "l"
                 coins = coins + 5
+                chestPos.clear()
             elif wdid == "move":
                position[pos[0] + 1][pos[1]] = " " 
                position[pos[0] + 2][pos[1]] = "f"
                enemyPos.remove([pos[0] + 1, pos[1]])
                enemyPos.append([pos[0] + 2, pos[1]])
+        else:
+            if wdid == "move":
+                print("You tried to push me outside. It's not possible")
     os.system("clear")
     
 print("Thanks For Playing")
