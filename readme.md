@@ -20,23 +20,37 @@ First install Python. Consult the [python.org download page](https://python.org/
 
 Then go to [github.com/micziz/theterminalgame/releases](github.com/micziz/theterminalgame/releases) and download the version you like the most (the latest is recommended).
 
-Download the zip and unzip it. Then open your terminal and cd into your downloads folder.
+Download the zip and unzip it. Then open your terminal and cd into the game folder.
 
 Default should be:
 
 MacOS and Linux:
 
 ```shell
-cd ~/Downloads
+cd ~/Downloads/theterminalgame-0.0.1
 ```
 
 Windows:
 
 ```cmd
-cd C:\Users\%USERNAME%\Downloads
+cd C:\Users\%USERNAME%\Downloads\theterminalgame-0.0.1
 ```
 
 (replace %USERNAME% with the current user)
+
+Now just run python!
+
+Linux And Windows:
+
+```shell
+python main.py
+```
+
+MacOS:
+
+```shell
+python3 main.py
+```
 
 ## How to play
 
