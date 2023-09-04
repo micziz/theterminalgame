@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.3
+
+Some ui and code changes
+
+- Add checks for what actions are possible
+
 ## 0.0.2
 
 Small fix!

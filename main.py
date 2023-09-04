@@ -37,6 +37,8 @@ while True:
     checkActions = ["e", "o", "q"]
     if "x" in position[0]:
         availableMoves.remove("w")
+    if "x" in position[-1]:
+        availableMoves.remove("s")
 
     
     for i in position:
@@ -45,10 +47,15 @@ while True:
         if "x" in i[-2]:
             availableMoves.remove("d")
 
-    if "x" in position[-1]:
-        availableMoves.remove("s")
+    if position[pos[0] + 1][pos[1]] != "f":
         actions.remove(["e", "Sword Swing"])
+        actions.remove(["q", "Shield"])
         checkActions.remove("e")
+        checkActions.remove("q")
+    
+    if position[pos[0] + 1][pos[1]] != "y":
+        actions.remove(["o", "Open Chest"])
+        checkActions.remove("o")
 
         
 
