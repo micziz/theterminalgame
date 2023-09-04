@@ -27,16 +27,17 @@ Default should be:
 MacOS and Linux:
 
 ```shell
-cd ~/Downloads/theterminalgame-0.0.1
+cd ~/Downloads/theterminalgame-(version)
 ```
 
 Windows:
 
 ```cmd
-cd C:\Users\%USERNAME%\Downloads\theterminalgame-0.0.1
+cd C:\Users\%USERNAME%\Downloads\theterminalgame-(version)
 ```
 
 (replace %USERNAME% with the current user)
+(replace (version) with the version you downloaded)
 
 Now just run python!
 
