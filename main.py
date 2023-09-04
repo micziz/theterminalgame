@@ -7,6 +7,9 @@ from parts.move import move
 from parts.act import act
 from parts.checkCollisions import checkCollision
 from parts.checkRepetition import checkRepetition
+from parts.titlteScreen import titleSreen
+
+choice = titleSreen()
 
 position[0][7] = "x"
 position[-1][7] = "D"
