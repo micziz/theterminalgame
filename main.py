@@ -2,14 +2,19 @@
 import os, sys, time
 
 from parts.board import upAndDown, position
-from parts.initialPositions import doorPos,enemyPos, coinPos, chestPos
 from parts.move import move
 from parts.act import act
 from parts.checkCollisions import checkCollision
 from parts.checkRepetition import checkRepetition
 from parts.titlteScreen import titleSreen
+from parts.changeLevel import changeLevel
 
 choice = titleSreen()
+
+doorPos, enemyPos, coinPos, chestPos  = changeLevel(0)
+
+currentLevel = 0
+maxLevel = 2
 
 position[0][7] = "x"
 position[-1][7] = "D"
@@ -47,13 +52,21 @@ while True:
         if "x" in i[-2]:
             availableMoves.remove("d")
 
-    if position[pos[0] + 1][pos[1]] != "f":
+    if "x" in position[-1]:
+        actions.remove(["e", "Sword Swing"])
+        actions.remove(["q", "Shield"])
+        checkActions.remove("e")
+        checkActions.remove("q")
+    elif position[pos[0] + 1][pos[1]] != "f":
         actions.remove(["e", "Sword Swing"])
         actions.remove(["q", "Shield"])
         checkActions.remove("e")
         checkActions.remove("q")
     
-    if position[pos[0] + 1][pos[1]] != "y":
+    if "x" in position[-1]:
+        actions.remove(["o", "Open Chest"])
+        checkActions.remove("o") 
+    elif position[pos[0] + 1][pos[1]] != "y":
         actions.remove(["o", "Open Chest"])
         checkActions.remove("o")
 
@@ -94,7 +107,11 @@ while True:
         pos = move(action, pos)
         collisions = checkCollision(pos, collisions, doorPos, enemyPos, coinPos, chestPos)
         if collisions["door"] == True:
-            break
+            if currentLevel != maxLevel:
+                doorPos, enemyPos, coinPos, chestPos = changeLevel(currentLevel)
+                currentLevel = currentLevel + 1
+            else:
+                break
         if collisions["enemy"] == True:
             print("You died")
             break
