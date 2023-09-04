@@ -4,7 +4,7 @@
 
 ## What Is The Terminal Game
 
-The terminal game is an RPG bulit with no dependencies in the terminal.
+The terminal game is an RPG bulit with ZERO dependencies that you can play compleatly in the terminal!
 
 ## Installation
 
