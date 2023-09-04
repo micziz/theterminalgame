@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.2
+
+Small fix!
+
+- Fix In documentation
+
 ## 0.0.1
 
 The first release of the terminal game!
