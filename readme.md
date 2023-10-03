@@ -78,11 +78,12 @@ O: Opens the chest. To collect reward walk over it.
 - [x] Collisions
 - [x] Title screen
 - [x] Add checks for what actions are possible
+- [x] Multiple levels
 - [ ] How to play in the title screen
 - [ ] Save and continue
-- [ ] Multiple levels
 - [ ] Bosses
 - [ ] Story
+- [ ] Design Levels
 - [ ] Comments
 - [ ] Full manual
 

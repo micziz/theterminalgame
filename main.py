@@ -19,7 +19,7 @@ position = setStuff(coordsArray, position)
 
 currentLevel = 0
 currentLevel = currentLevel + 1
-maxLevel = 2
+maxLevel = 3
 
 coins = 0
 
@@ -104,8 +104,6 @@ while True:
                 coordsArray, position, collisions = changeLevel(position, collisions, currentLevel, coordsArray)
                 position = setStuff(coordsArray, position)
                 pos = coordsArray[0]
-                print(position)
-                time.sleep(1.5)
             else:
                 break
             currentLevel = currentLevel + 1

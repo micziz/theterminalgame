@@ -35,6 +35,13 @@ def getCoords(level):
         coinPos = []
         chestPos = [6, 2]
         return [startPos, doorPos, enemyPos, coinPos, chestPos]
+    elif level == 2:
+        startPos = [0, 7]
+        doorPos = [9, 7]
+        enemyPos = [[4, 2], [3, 6], [3, 10]]
+        coinPos = []
+        chestPos = [5, 5]
+        return [startPos, doorPos, enemyPos, coinPos, chestPos]
 
 
 def changeLevel(currentPos, currentCollisions, level, coordsArray):
@@ -42,12 +49,16 @@ def changeLevel(currentPos, currentCollisions, level, coordsArray):
     currentCollisions = copy(emptyCollisions)
     if level == 0:
         newCordsArray = getCoords(0)
-        print(newCordsArray)
         coordsArray.clear()
         coordsArray = newCordsArray
         return coordsArray, currentPos, currentCollisions
     elif level == 1:
         newCordsArray = getCoords(1)
+        coordsArray.clear()
+        coordsArray = newCordsArray
+        return coordsArray, currentPos, currentCollisions
+    elif level == 2:
+        newCordsArray = getCoords(2)
         coordsArray.clear()
         coordsArray = newCordsArray
         return coordsArray, currentPos, currentCollisions
