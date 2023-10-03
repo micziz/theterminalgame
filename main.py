@@ -1,39 +1,31 @@
 # Imports
 import os, sys, time
 
-from parts.board import upAndDown, position
+from parts.board import upAndDown
+from parts.board import position as initialPosition
+from parts.board import initialCollisions
 from parts.move import move
 from parts.act import act
 from parts.checkCollisions import checkCollision
 from parts.checkRepetition import checkRepetition
 from parts.titlteScreen import titleSreen
 from parts.changeLevel import changeLevel
+from parts.setStuff import setStuff
 
 choice = titleSreen()
 
-doorPos, enemyPos, coinPos, chestPos  = changeLevel(0)
+coordsArray, position, collisions = changeLevel(initialPosition, initialCollisions, 0, [])
+position = setStuff(coordsArray, position)
 
 currentLevel = 0
+currentLevel = currentLevel + 1
 maxLevel = 2
-
-position[0][7] = "x"
-position[-1][7] = "D"
-position[3][4] = "f"
-position[3][10] = "f"
-position[5][8] = "y"
 
 coins = 0
 
-collisions = {
-    "door": False,
-    "enemy": False,
-    "coin": False,
-    "chest": False
-}
 
 
-startPos = [0, 7]
-pos = startPos
+pos = coordsArray[0]
 while True:
     didMove = False
     didAct = False
@@ -105,13 +97,16 @@ while True:
     if didMove:
         position[pos[0]][pos[1]] = " "
         pos = move(action, pos)
-        collisions = checkCollision(pos, collisions, doorPos, enemyPos, coinPos, chestPos)
+        collisions = checkCollision(pos, collisions, coordsArray[1], coordsArray[2], coordsArray[3], coordsArray[4])
         if collisions["door"] == True:
             if currentLevel != maxLevel:
-                doorPos, enemyPos, coinPos, chestPos = changeLevel(currentLevel)
-                currentLevel = currentLevel + 1
+                position[pos[0]][pos[1]] = " "
+                coordsArray, position, collisions = changeLevel(position, collisions, currentLevel, coordsArray)
+                print(position)
+                position = setStuff(coordsArray, position)
             else:
                 break
+            currentLevel = currentLevel + 1
         if collisions["enemy"] == True:
             print("You died")
             break
@@ -127,24 +122,25 @@ while True:
             time.sleep(0.2)
         collisions["chest"] = False
     elif didAct:
-        sucsess, wdid = act(action, pos, position, chestPos)
+        sucsess, wdid = act(action, pos, position, coordsArray[4])
         if sucsess:
             if wdid == "kill": 
                 position[pos[0] + 1][pos[1]] = "c"
-                enemyPos.remove([pos[0] + 1, pos[1]])
-                coinPos.append([pos[0] + 1, pos[1]])
+                coordsArray[2].remove([pos[0] + 1, pos[1]])
+                coordsArray[3].append([pos[0] + 1, pos[1]])
             elif wdid == "open":
                 coins = coins + 5
                 position[pos[0] + 1][pos[1]] = " "
-                chestPos.clear()
+                coordsArray[4].clear()
             elif wdid == "move":
                position[pos[0] + 1][pos[1]] = " " 
                position[pos[0] + 2][pos[1]] = "f"
-               enemyPos.remove([pos[0] + 1, pos[1]])
-               enemyPos.append([pos[0] + 2, pos[1]])
+               coordsArray[2].remove([pos[0] + 1, pos[1]])
+               coordsArray[2].append([pos[0] + 2, pos[1]])
         else:
             if wdid == "move":
                 print("You tried to push me outside. It's not possible")
+    
     os.system("clear")
     
 print("Thanks For Playing")

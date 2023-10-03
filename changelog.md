@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.4
+
+Bug fixes and levels!
+
+- Add fix for bug where walking in the edge (on the south end) would crash the game
+
 ## 0.0.3
 
 Some ui and code changes
