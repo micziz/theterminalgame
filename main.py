@@ -102,8 +102,10 @@ while True:
             if currentLevel != maxLevel:
                 position[pos[0]][pos[1]] = " "
                 coordsArray, position, collisions = changeLevel(position, collisions, currentLevel, coordsArray)
-                print(position)
                 position = setStuff(coordsArray, position)
+                pos = coordsArray[0]
+                print(position)
+                time.sleep(1.5)
             else:
                 break
             currentLevel = currentLevel + 1
