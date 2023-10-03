@@ -5,6 +5,7 @@
 Bug fixes and levels!
 
 - Add fix for bug where walking in the edge (on the south end) would crash the game
+- Levels!!!!
 
 ## 0.0.3
 
