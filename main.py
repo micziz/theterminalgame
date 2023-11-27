@@ -14,12 +14,18 @@ from parts.setStuff import setStuff
 
 choice = titleSreen()
 
-coordsArray, position, collisions = changeLevel(initialPosition, initialCollisions, 0, [])
+if choice == 1:
+    currentLevel = 0
+if choice == 2:
+    with open("./ttgsave/save.txt", "rt") as f:
+        currentLevel = int(f.read())
+
+coordsArray, position, collisions = changeLevel(initialPosition, initialCollisions, currentLevel, [])
 position = setStuff(coordsArray, position)
 
-currentLevel = 0
-currentLevel = currentLevel + 1
-maxLevel = 3
+
+
+maxLevel = 2
 
 coins = 0
 
@@ -30,14 +36,13 @@ while True:
     didMove = False
     didAct = False
     availableMoves = ["w", "s", "a", "d"]
-    actions = [["e", "Sword Swing"], ["o", "Open Chest"], ["q", "Shield"]]
-    checkActions = ["e", "o", "q"]
+    actions = [["e", "Sword Swing"], ["o", "Open Chest"], ["q", "Shield"], ["z", "Save"]]
+    checkActions = ["e", "o", "q", "z"]
     if "x" in position[0]:
         availableMoves.remove("w")
     if "x" in position[-1]:
         availableMoves.remove("s")
 
-    
     for i in position:
         if "x" in i[1]:
             availableMoves.remove("a")
@@ -99,14 +104,14 @@ while True:
         pos = move(action, pos)
         collisions = checkCollision(pos, collisions, coordsArray[1], coordsArray[2], coordsArray[3], coordsArray[4])
         if collisions["door"] == True:
-            if currentLevel != maxLevel:
+            if (currentLevel + 1) != maxLevel:
+                currentLevel = currentLevel + 1
                 position[pos[0]][pos[1]] = " "
                 coordsArray, position, collisions = changeLevel(position, collisions, currentLevel, coordsArray)
                 position = setStuff(coordsArray, position)
                 pos = coordsArray[0]
             else:
                 break
-            currentLevel = currentLevel + 1
         if collisions["enemy"] == True:
             print("You died")
             break
@@ -122,7 +127,7 @@ while True:
             time.sleep(0.2)
         collisions["chest"] = False
     elif didAct:
-        sucsess, wdid = act(action, pos, position, coordsArray[4])
+        sucsess, wdid = act(action, pos, position, coordsArray[4], str(currentLevel))
         if sucsess:
             if wdid == "kill": 
                 position[pos[0] + 1][pos[1]] = "c"
@@ -137,9 +142,15 @@ while True:
                position[pos[0] + 2][pos[1]] = "f"
                coordsArray[2].remove([pos[0] + 1, pos[1]])
                coordsArray[2].append([pos[0] + 2, pos[1]])
+            elif wdid == "save":
+                print("Saved Successfully")
+                time.sleep(2.2)
         else:
             if wdid == "move":
                 print("You tried to push me outside. It's not possible")
+            elif wdid == "save":
+                print("Error while saving")
+                time.sleep(2.2)
     
     os.system("clear")
     

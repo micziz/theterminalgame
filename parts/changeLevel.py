@@ -47,18 +47,7 @@ def getCoords(level):
 def changeLevel(currentPos, currentCollisions, level, coordsArray):
     currentPos = deepcopy(position)
     currentCollisions = copy(emptyCollisions)
-    if level == 0:
-        newCordsArray = getCoords(0)
-        coordsArray.clear()
-        coordsArray = newCordsArray
-        return coordsArray, currentPos, currentCollisions
-    elif level == 1:
-        newCordsArray = getCoords(1)
-        coordsArray.clear()
-        coordsArray = newCordsArray
-        return coordsArray, currentPos, currentCollisions
-    elif level == 2:
-        newCordsArray = getCoords(2)
-        coordsArray.clear()
-        coordsArray = newCordsArray
-        return coordsArray, currentPos, currentCollisions
+    newCordsArray = getCoords(level)
+    coordsArray.clear()
+    coordsArray = newCordsArray
+    return coordsArray, currentPos, currentCollisions

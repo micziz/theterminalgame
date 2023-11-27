@@ -1,4 +1,6 @@
-def act(action, pos, position, chestPos):
+import os
+
+def act(action, pos, position, chestPos, currentLevel):
     if action == "e":
         if position[pos[0] + 1][pos[1]] == "f":
             return True, "kill"
@@ -18,3 +20,16 @@ def act(action, pos, position, chestPos):
                 return False, "move"
         else: 
             return False, "move"
+    if action == "z":
+        try:
+            if os.path.isdir("./ttgsave") == True:
+                with open("./ttgsave/save.txt", "wt") as f:
+                    f.write(currentLevel)
+            else:
+                os.mkdir("./ttgsave")
+                with open("./ttgsave/save.txt", "wt") as f:
+                    f.write(currentLevel)
+            return True, "save"
+        except:
+            return False, "save"
+            
