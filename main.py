@@ -66,7 +66,7 @@ while True:
     if "x" in position[-1]:
         actions.remove(["o", "Open Chest"])
         checkActions.remove("o") 
-    elif position[pos[0] + 1][pos[1]] != "y":
+    elif (position[pos[0] + 1][pos[1]] != "y") and (position[pos[0]][pos[1] + 1] != "y") and (position[pos[0]][pos[1] - 1] != "y"):
         actions.remove(["o", "Open Chest"])
         checkActions.remove("o")
 
@@ -144,7 +144,15 @@ while True:
                 position[pos[0] + 1][pos[1]] = "c"
                 coordsArray[2].remove([pos[0] + 1, pos[1]])
                 coordsArray[3].append([pos[0] + 1, pos[1]])
-            elif wdid == "open":
+            elif wdid == "opena":
+                coins = coins + 5
+                position[pos[0]][pos[1] - 1] = " "
+                coordsArray[4].clear()
+            elif wdid == "opend":
+                coins = coins + 5
+                position[pos[0]][pos[1] + 1] = " "
+                coordsArray[4].clear()
+            elif wdid == "opens": 
                 coins = coins + 5
                 position[pos[0] + 1][pos[1]] = " "
                 coordsArray[4].clear()

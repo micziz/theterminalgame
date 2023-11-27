@@ -16,8 +16,12 @@ def act(action, pos, position, chestPos, currentLevel):
         else:
             return False,  "kill"
     if action == "o":
-        if position[pos[0] + 1][pos[1]] == "y":
-            return True, "open"
+        if (position[pos[0]][pos[1] + 1] == "y"):
+            return True, "opend"
+        elif (position[pos[0] + 1][pos[1]] == "y"):
+            return True, "opens"
+        elif (position[pos[0]][pos[1] - 1] == "y"):
+            return True, "opena"
         else:
             return False, "open"
     if action == "q":
