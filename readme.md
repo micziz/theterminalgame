@@ -82,13 +82,14 @@ W: Go up
 S: Go down
 A: Go left
 D: Go right
+Z: Save
 
-If enemy is below them:
+If an enemy is below you:
 
 E: Swing sword. Kills enemy and drops 1 coin
 Q: Push enemy. Pushes him until the end of the available space
 
-If chest is below the player:
+If a chest is below you:
 
 O: Opens the chest. To collect reward walk over it.
 
@@ -102,8 +103,8 @@ O: Opens the chest. To collect reward walk over it.
 - [x] Title screen
 - [x] Add checks for what actions are possible
 - [x] Multiple levels
+- [x] Save and continue
 - [ ] How to play in the title screen
-- [ ] Save and continue
 - [ ] Bosses
 - [ ] Story
 - [ ] Design Levels

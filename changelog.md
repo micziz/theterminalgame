@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.5
+
+- Add save and continue
+- Fix some stuff in readme
+- Add gitignore
+
 ## 0.0.4
 
 Bug fixes and levels!
