@@ -1,24 +1,33 @@
 # The Terminal Game
 
-# NOTE: THE TERMINAL GAME IS STILL IN ALPHA! EXPECT BUGS AND UNFINESHED/NON PRESENT LEVELS
+PLEASE NOTE: The terminal game is still in development. Bugs will be present. We are working as hard as we can to give you a finshed product, but it might take some time.
 
 ## What Is The Terminal Game
 
-The terminal game is an RPG bulit with ZERO dependencies that you can play compleatly in the terminal!
+The terminal game is an RPG built with ZERO dependencies that you can play completely in the terminal!
 
 ## Installation
 
 ### Requirements
 
 - Python 3.8+ (tested only on the most recent Python version)
+- An ASCII capable terminal (MacOS/Windows/Most popular linux distros should have this automatically)
+
+If you plan on downloading a stable release (recommended):
+
 - Software with .zip support
-- An ASCII capable terminal (MacOS/Windows terminal/Most popular linux distros should have this automatically)
+
+If you plan to use the main branch (may be unstable):
+
+- A recent version of git
 
 ### Installation Instructions
 
 First install Python. Consult the [python.org download page](https://python.org/downloads) and follow the instructions for your OS.
 
-Then go to [github.com/micziz/theterminalgame/releases](github.com/micziz/theterminalgame/releases) and download the version you like the most (the latest is recommended).
+Stable release (recommended): 
+
+Go to [github.com/micziz/theterminalgame/releases](github.com/micziz/theterminalgame/releases) and download the version you like the most (the latest is recommended).
 
 Download the zip and unzip it. Then open your terminal and cd into the game folder.
 
@@ -38,6 +47,20 @@ cd C:\Users\%USERNAME%\Downloads\theterminalgame-(version)
 
 (replace %USERNAME% with the current user)
 (replace (version) with the version you downloaded)
+
+Main branch:
+
+Copy this command:
+
+```sh
+git clone https://github.com/micziz/theterminalgame.git
+```
+
+Cd into it:
+
+```sh
+cd theterminalgame
+```
 
 Now just run python!
 
