@@ -5,7 +5,24 @@ from os import mkdir
 # Import isdir to check if a directory exits
 from os.path import isdir
 
-def act(action, pos, position, chestPos, currentLevel):
+from json import dumps
+
+def createSF(level, coins):
+    if isdir("./ttgsave") == True:
+        with open("./ttgsave/save.json", "wt") as f:
+            f.write(dumps({
+                "level": level,
+                "coins": coins
+            }))
+    else:
+        mkdir("./ttgsave")
+        with open("./ttgsave/save.json", "wt") as f:
+            f.write(dumps({
+                "level": level,
+                "coins": coins
+            }))
+
+def act(action, pos, position, chestPos, currentLevel, coins):
     if action == "e":
         if (position[pos[0]][pos[1] + 1] == "f"):
             return True, "killd"
@@ -35,13 +52,7 @@ def act(action, pos, position, chestPos, currentLevel):
             return False, "move"
     if action == "z":
         try:
-            if isdir("./ttgsave") == True:
-                with open("./ttgsave/save.txt", "wt") as f:
-                    f.write(currentLevel)
-            else:
-                mkdir("./ttgsave")
-                with open("./ttgsave/save.txt", "wt") as f:
-                    f.write(currentLevel)
+            createSF(currentLevel, coins)
             return True, "save"
         except:
             return False, "save"

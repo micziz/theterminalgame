@@ -7,6 +7,8 @@ from os import system
 from sys import exit
 # Import sleep to stop the loop for a couple seconds
 from time import sleep
+from json import loads
+
 
 from parts.board import upAndDown
 from parts.board import position as initialPosition
@@ -19,20 +21,25 @@ from parts.titlteScreen import titleSreen
 from parts.changeLevel import changeLevel
 from parts.setStuff import setStuff
 from parts.clearScreen import clearscreen
+from parts.createSF import createSF
 
 choice = titleSreen()
 
 if choice == 1:
     currentLevel = 0
+    coins = 0
+    createSF(currentLevel, coins)
 if choice == 2:
-    with open("./ttgsave/save.txt", "rt") as f:
-        currentLevel = int(f.read())
+    with open("./ttgsave/save.json", "rt") as f:
+        saveFile = loads(f.read())
+        currentLevel = int(saveFile["level"])
+        coins = int(saveFile["coins"])
 
 coordsArray, position, collisions = changeLevel(initialPosition, initialCollisions, currentLevel, [])
 position = setStuff(coordsArray, position)
 
 maxLevel = 2
-coins = 0
+
 
 pos = coordsArray[0]
 while True:
@@ -130,7 +137,7 @@ while True:
             sleep(0.2)
         collisions["chest"] = False
     elif didAct:
-        sucsess, wdid = act(action, pos, position, coordsArray[4], str(currentLevel))
+        sucsess, wdid = act(action, pos, position, coordsArray[4], str(currentLevel), str(coins))
         if sucsess:
             if wdid == "killa":
                 position[pos[0]][pos[1] - 1] = "c"

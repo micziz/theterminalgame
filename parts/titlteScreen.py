@@ -47,11 +47,11 @@ def titleSreen():
     sleep(0.5)
     while True:
         print("1: New Game")
-        if exists("./ttgsave/save.txt"):
+        if exists("./ttgsave/save.json"):
             print("2: Continue")
         choice = input(": ")
         if choice == "1":
             return 1
         elif choice == "2":
-            if exists("./ttgsave/save.txt"):
+            if exists("./ttgsave/save.json"):
                 return 2
