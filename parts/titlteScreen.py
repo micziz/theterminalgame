@@ -7,8 +7,10 @@ from os import system
 # Import exits to check if a path exists
 from os.path import exists
 
+from clearScreen import clearscreen
+
 def titleSreen():
-    system("clear")
+    system(clearscreen())
     print("""
 
 

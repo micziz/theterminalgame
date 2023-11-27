@@ -18,6 +18,7 @@ from parts.checkRepetition import checkRepetition
 from parts.titlteScreen import titleSreen
 from parts.changeLevel import changeLevel
 from parts.setStuff import setStuff
+from parts.clearScreen import clearscreen
 
 choice = titleSreen()
 
@@ -159,6 +160,6 @@ while True:
                 print("Error while saving")
                 sleep(2.2)
     
-    system("clear")
+    system(clearscreen())
     
 print("Thanks For Playing")
