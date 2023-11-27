@@ -25,7 +25,7 @@ def titleSreen():
     while True:
         print("1: New Game")
         if os.path.exists("./ttgsave/save.txt"):
-            print("2: Continue (W.I.P)")
+            print("2: Continue")
         choice = input(": ")
         if choice == "1":
             return 1
