@@ -1,5 +1,12 @@
+# Copyright 2023-Present Micziz. Licensed under the MIT license. More info in the LICENSE file!
+
 # Imports
-import os, sys, time
+# Import system to clear the screen
+from os import system
+# Import exit to exit at a certain point
+from sys import exit
+# Import sleep to stop the loop for a couple seconds
+from time import sleep
 
 from parts.board import upAndDown
 from parts.board import position as initialPosition
@@ -86,7 +93,7 @@ while True:
             action = input("Move: ")
         except KeyboardInterrupt:
             print("\nThanks For Playing")
-            sys.exit(0)
+            exit(0)
         if action in availableMoves:
             didMove = True
             break
@@ -124,7 +131,7 @@ while True:
             pos = [pos[0] - 1, pos[1]]
             position[pos[0]][pos[1]] = "x"
             print("You are Blocked, try proceeding elswhere")
-            time.sleep(0.2)
+            sleep(0.2)
         collisions["chest"] = False
     elif didAct:
         sucsess, wdid = act(action, pos, position, coordsArray[4], str(currentLevel))
@@ -144,14 +151,14 @@ while True:
                coordsArray[2].append([pos[0] + 2, pos[1]])
             elif wdid == "save":
                 print("Saved Successfully")
-                time.sleep(2.2)
+                sleep(2.2)
         else:
             if wdid == "move":
                 print("You tried to push me outside. It's not possible")
             elif wdid == "save":
                 print("Error while saving")
-                time.sleep(2.2)
+                sleep(2.2)
     
-    os.system("clear")
+    system("clear")
     
 print("Thanks For Playing")

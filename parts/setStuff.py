@@ -1,4 +1,5 @@
-import time
+# Copyright 2023-Present Micziz. Licensed under the MIT license. More info in the LICENSE file!
+
 def setStuff(coordsArray, position):
     position[coordsArray[0][0]][coordsArray[0][1]] = "x"
     position[coordsArray[1][0]][coordsArray[1][1]] = "D"

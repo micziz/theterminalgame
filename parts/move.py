@@ -1,3 +1,5 @@
+# Copyright 2023-Present Micziz. Licensed under the MIT license. More info in the LICENSE file!
+
 def move(action, pos):
     if action == "w":
         pos[0] = pos[0] - 1

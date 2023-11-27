@@ -1,4 +1,9 @@
-import os
+# Copyright 2023-Present Micziz. Licensed under the MIT license. More info in the LICENSE file!
+
+# Import mkdir to create a new directory!
+from os import mkdir
+# Import isdir to check if a directory exits
+from os.path import isdir
 
 def act(action, pos, position, chestPos, currentLevel):
     if action == "e":
@@ -22,11 +27,11 @@ def act(action, pos, position, chestPos, currentLevel):
             return False, "move"
     if action == "z":
         try:
-            if os.path.isdir("./ttgsave") == True:
+            if isdir("./ttgsave") == True:
                 with open("./ttgsave/save.txt", "wt") as f:
                     f.write(currentLevel)
             else:
-                os.mkdir("./ttgsave")
+                mkdir("./ttgsave")
                 with open("./ttgsave/save.txt", "wt") as f:
                     f.write(currentLevel)
             return True, "save"

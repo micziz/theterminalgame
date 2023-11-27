@@ -1,7 +1,14 @@
-import time, os
+# Copyright 2023-Present Micziz. Licensed under the MIT license. More info in the LICENSE file!
+
+# Import sleep to show messages for some time
+from time import sleep
+# Import system to run command to clear the screen
+from os import system
+# Import exits to check if a path exists
+from os.path import exists
 
 def titleSreen():
-    os.system("clear")
+    system("clear")
     print("""
 
 
@@ -11,7 +18,7 @@ def titleSreen():
 
 
     """)
-    time.sleep(1.5)
+    sleep(1.5)
     print("""
 
 
@@ -21,14 +28,14 @@ def titleSreen():
 
 
     """)
-    time.sleep(0.5)
+    sleep(0.5)
     while True:
         print("1: New Game")
-        if os.path.exists("./ttgsave/save.txt"):
+        if exists("./ttgsave/save.txt"):
             print("2: Continue")
         choice = input(": ")
         if choice == "1":
             return 1
         elif choice == "2":
-            if os.path.exists("./ttgsave/save.txt"):
+            if exists("./ttgsave/save.txt"):
                 return 2

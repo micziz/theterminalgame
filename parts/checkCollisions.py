@@ -1,3 +1,5 @@
+# Copyright 2023-Present Micziz. Licensed under the MIT license. More info in the LICENSE file!
+
 def checkCollision(pos, collisions, doorPos, enemyPos, coinPos, chestPos):
     if pos == doorPos:
         collisions["door"] = True
