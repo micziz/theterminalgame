@@ -7,8 +7,12 @@ from os.path import isdir
 
 def act(action, pos, position, chestPos, currentLevel):
     if action == "e":
-        if position[pos[0] + 1][pos[1]] == "f":
-            return True, "kill"
+        if (position[pos[0]][pos[1] + 1] == "f"):
+            return True, "killd"
+        elif (position[pos[0] + 1][pos[1]] == "f"):
+            return True, "kills"
+        elif (position[pos[0]][pos[1] - 1] == "f"):
+            return True, "killa"
         else:
             return False,  "kill"
     if action == "o":

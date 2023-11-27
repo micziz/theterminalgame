@@ -57,7 +57,7 @@ while True:
         actions.remove(["q", "Shield"])
         checkActions.remove("e")
         checkActions.remove("q")
-    elif position[pos[0] + 1][pos[1]] != "f":
+    elif (position[pos[0] + 1][pos[1]] != "f") and (position[pos[0]][pos[1] + 1] != "f") and (position[pos[0]][pos[1] - 1] != "f"):
         actions.remove(["e", "Sword Swing"])
         actions.remove(["q", "Shield"])
         checkActions.remove("e")
@@ -132,7 +132,15 @@ while True:
     elif didAct:
         sucsess, wdid = act(action, pos, position, coordsArray[4], str(currentLevel))
         if sucsess:
-            if wdid == "kill": 
+            if wdid == "killa":
+                position[pos[0]][pos[1] - 1] = "c"
+                coordsArray[2].remove([pos[0], pos[1] - 1])
+                coordsArray[3].append([pos[0], pos[1] - 1])
+            elif wdid == "killd":
+                position[pos[0]][pos[1] + 1] = "c"
+                coordsArray[2].remove([pos[0], pos[1] + 1])
+                coordsArray[3].append([pos[0], pos[1] + 1])
+            elif wdid == "kills": 
                 position[pos[0] + 1][pos[1]] = "c"
                 coordsArray[2].remove([pos[0] + 1, pos[1]])
                 coordsArray[3].append([pos[0] + 1, pos[1]])

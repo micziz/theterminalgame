@@ -7,7 +7,21 @@ from os import system
 # Import exits to check if a path exists
 from os.path import exists
 
-from clearScreen import clearscreen
+# Import system to check the platform
+from platform import system as checkSys
+
+# Function that returns the command to clear the screen based on platform
+def clearscreen():
+    # If the system is Linux or MacOS (darwin is MacOS's code)
+    if (checkSys() == "Linux") or (checkSys() == "Darwin"):
+        # The command is clear
+        return "clear"
+    # If it's windows
+    elif checkSys() == "Windows":
+        # The command is cls
+        return "cls"
+    # If nothing can be found, default to clear
+    return "clear"
 
 def titleSreen():
     system(clearscreen())
