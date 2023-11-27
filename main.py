@@ -31,13 +31,8 @@ if choice == 2:
 coordsArray, position, collisions = changeLevel(initialPosition, initialCollisions, currentLevel, [])
 position = setStuff(coordsArray, position)
 
-
-
 maxLevel = 2
-
 coins = 0
-
-
 
 pos = coordsArray[0]
 while True:
